@@ -1,0 +1,58 @@
+// Parent class
+class Attendance {
+    String studentName;
+    int classesConducted;
+    int classesAttended;
+
+    Attendance(String studentName, int classesConducted, int classesAttended) {
+        this.studentName = studentName;
+        this.classesConducted = classesConducted;
+        this.classesAttended = classesAttended;
+    }
+
+    // Method to be overridden
+    public double calculateAttendance() {
+        return (classesAttended * 100.0) / classesConducted;
+    }
+
+    public void displayAttendance() {
+        System.out.println(studentName + " Attendance: " + calculateAttendance() + "%");
+    }
+}
+
+// Engineering Faculty Attendance
+class EngineeringAttendance extends Attendance {
+    EngineeringAttendance(String studentName, int classesConducted, int classesAttended) {
+        super(studentName, classesConducted, classesAttended);
+    }
+
+    @Override
+    public double calculateAttendance() {
+        // Engineering: stricter calculation (e.g., lab counts double)
+        return ((classesAttended + 2) * 100.0) / classesConducted;
+    }
+}
+
+// Medical Faculty Attendance
+class MedicalAttendance extends Attendance {
+    MedicalAttendance(String studentName, int classesConducted, int classesAttended) {
+        super(studentName, classesConducted, classesAttended);
+    }
+
+    @Override
+    public double calculateAttendance() {
+        // Medical: more lenient (e.g., practicals weighted differently)
+        return (classesAttended * 100.0) / (classesConducted - 1);
+    }
+}
+
+// Test class
+public class AttendanceTest {
+    public static void main(String[] args) {
+        Attendance engStudent = new EngineeringAttendance("Ravi", 40, 30);
+        Attendance medStudent = new MedicalAttendance("Priya", 40, 28);
+
+        engStudent.displayAttendance();  // Output: Ravi Attendance: (custom %)
+        medStudent.displayAttendance();  // Output: Priya Attendance: (custom %)
+    }
+}
