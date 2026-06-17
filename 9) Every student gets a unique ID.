@@ -1,0 +1,29 @@
+// Student class
+class Student {
+    private static int counter = 1000; // static counter shared by all students
+    private int studentId;
+    private String name;
+
+    // Constructor
+    Student(String name) {
+        this.name = name;
+        this.studentId = ++counter; // increment counter and assign unique ID
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name + ", Student ID: " + studentId);
+    }
+}
+
+// Test class
+public class StudentTest {
+    public static void main(String[] args) {
+        Student s1 = new Student("Ravi");
+        Student s2 = new Student("Priya");
+        Student s3 = new Student("Amit");
+
+        s1.displayInfo();  // Output: Name: Ravi, Student ID: 1001
+        s2.displayInfo();  // Output: Name: Priya, Student ID: 1002
+        s3.displayInfo();  // Output: Name: Amit, Student ID: 1003
+    }
+}
