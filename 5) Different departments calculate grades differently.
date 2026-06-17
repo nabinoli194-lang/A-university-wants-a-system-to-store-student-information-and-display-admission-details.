@@ -1,0 +1,42 @@
+// ResultProcessor interface
+interface ResultProcessor {
+    double calculateGrade(double[] marks);
+}
+
+// EngineeringDepartment class
+class EngineeringDepartment implements ResultProcessor {
+    @Override
+    public double calculateGrade(double[] marks) {
+        // Engineering: Weighted average (e.g., 60% theory, 40% practical)
+        double theory = marks[0];   // assume marks[0] = theory
+        double practical = marks[1]; // assume marks[1] = practical
+        return (theory * 0.6) + (practical * 0.4);
+    }
+}
+
+// ManagementDepartment class
+class ManagementDepartment implements ResultProcessor {
+    @Override
+    public double calculateGrade(double[] marks) {
+        // Management: Simple average of all subjects
+        double sum = 0;
+        for (double m : marks) {
+            sum += m;
+        }
+        return sum / marks.length;
+    }
+}
+
+// Main class to test
+public class DepartmentResultDemo {
+    public static void main(String[] args) {
+        ResultProcessor engDept = new EngineeringDepartment();
+        ResultProcessor mgmtDept = new ManagementDepartment();
+
+        double[] engMarks = {80, 70}; // theory, practical
+        double[] mgmtMarks = {85, 75, 90}; // multiple subjects
+
+        System.out.println("Engineering Grade: " + engDept.calculateGrade(engMarks));
+        System.out.println("Management Grade: " + mgmtDept.calculateGrade(mgmtMarks));
+    }
+}
