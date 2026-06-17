@@ -1,0 +1,43 @@
+// Notification interface
+interface Notification {
+    void sendNotification(String message);
+}
+
+// Email Notification implementation
+class EmailNotification implements Notification {
+    private String emailAddress;
+
+    EmailNotification(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("Sending EMAIL to " + emailAddress + ": " + message);
+    }
+}
+
+// SMS Notification implementation
+class SMSNotification implements Notification {
+    private String phoneNumber;
+
+    SMSNotification(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    @Override
+    public void sendNotification(String message) {
+        System.out.println("Sending SMS to " + phoneNumber + ": " + message);
+    }
+}
+
+// Test class
+public class NotificationTest {
+    public static void main(String[] args) {
+        Notification email = new EmailNotification("student@example.com");
+        Notification sms = new SMSNotification("9876543210");
+
+        email.sendNotification("Library book due tomorrow!");
+        sms.sendNotification("Your attendance is below 75%!");
+    }
+}
