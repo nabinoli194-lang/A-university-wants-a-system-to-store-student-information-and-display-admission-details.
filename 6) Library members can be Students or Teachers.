@@ -1,0 +1,55 @@
+// Superclass
+class Member {
+    String name;
+    int borrowingLimit;
+
+    Member(String name) {
+        this.name = name;
+    }
+
+    // Method to be overridden
+    public int getBorrowingLimit() {
+        return borrowingLimit;
+    }
+
+    public void displayInfo() {
+        System.out.println("Member: " + name + ", Borrowing Limit: " + getBorrowingLimit());
+    }
+}
+
+// Subclass for Students
+class StudentMember extends Member {
+    StudentMember(String name) {
+        super(name);
+        this.borrowingLimit = 5; // Example limit for students
+    }
+
+    @Override
+    public int getBorrowingLimit() {
+        return borrowingLimit;
+    }
+}
+
+// Subclass for Teachers
+class TeacherMember extends Member {
+    TeacherMember(String name) {
+        super(name);
+        this.borrowingLimit = 10; // Example limit for teachers
+    }
+
+    @Override
+    public int getBorrowingLimit() {
+        return borrowingLimit;
+    }
+}
+
+// Test class
+public class LibraryTest {
+    public static void main(String[] args) {
+        Member student = new StudentMember("Alice");
+        Member teacher = new TeacherMember("Mr. Sharma");
+
+        student.displayInfo();  // Output: Member: Alice, Borrowing Limit: 5
+        teacher.displayInfo();  // Output: Member: Mr. Sharma, Borrowing Limit: 10
+    }
+}
