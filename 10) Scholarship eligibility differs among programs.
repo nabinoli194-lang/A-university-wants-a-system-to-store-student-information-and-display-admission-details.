@@ -1,0 +1,65 @@
+// Abstract base class
+abstract class Scholarship {
+    protected String studentName;
+    protected double amount;
+
+    public Scholarship(String studentName, double amount) {
+        this.studentName = studentName;
+        this.amount = amount;
+    }
+
+    // Abstract method to check eligibility
+    public abstract boolean checkEligibility();
+
+    // Display scholarship details
+    public void displayDetails() {
+        System.out.println("Student: " + studentName);
+        System.out.println("Scholarship Amount: $" + amount);
+    }
+}
+
+// Merit-based scholarship
+class MeritScholarship extends Scholarship {
+    private double gpa;
+
+    public MeritScholarship(String studentName, double amount, double gpa) {
+        super(studentName, amount);
+        this.gpa = gpa;
+    }
+
+    @Override
+    public boolean checkEligibility() {
+        return gpa >= 3.5; // Example condition
+    }
+}
+
+// Need-based scholarship
+class NeedBasedScholarship extends Scholarship {
+    private double familyIncome;
+
+    public NeedBasedScholarship(String studentName, double amount, double familyIncome) {
+        super(studentName, amount);
+        this.familyIncome = familyIncome;
+    }
+
+    @Override
+    public boolean checkEligibility() {
+        return familyIncome < 40000; // Example condition
+    }
+}
+
+// Main class to test
+public class ScholarshipTest {
+    public static void main(String[] args) {
+        MeritScholarship merit = new MeritScholarship("Alice", 2000, 3.8);
+        NeedBasedScholarship need = new NeedBasedScholarship("Bob", 2500, 35000);
+
+        System.out.println("Merit Scholarship:");
+        merit.displayDetails();
+        System.out.println("Eligible: " + merit.checkEligibility());
+
+        System.out.println("\nNeed-Based Scholarship:");
+        need.displayDetails();
+        System.out.println("Eligible: " + need.checkEligibility());
+    }
+}
