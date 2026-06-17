@@ -1,0 +1,53 @@
+// Abstract class Student
+abstract class Student {
+    String name;
+    int credits;
+
+    // Constructor
+    Student(String name, int credits) {
+        this.name = name;
+        this.credits = credits;
+    }
+
+    // Abstract method
+    abstract double calculateFee();
+}
+
+// Undergraduate class
+class Undergraduate extends Student {
+    double feePerCredit = 500; // Example fee structure
+
+    Undergraduate(String name, int credits) {
+        super(name, credits);
+    }
+
+    @Override
+    double calculateFee() {
+        return credits * feePerCredit;
+    }
+}
+
+// Graduate class
+class Graduate extends Student {
+    double feePerCredit = 1000; // Example fee structure
+
+    Graduate(String name, int credits) {
+        super(name, credits);
+    }
+
+    @Override
+    double calculateFee() {
+        return credits * feePerCredit;
+    }
+}
+
+// Main class to test
+public class FeeStructureDemo {
+    public static void main(String[] args) {
+        Student ug = new Undergraduate("Alice", 20);
+        Student grad = new Graduate("Bob", 15);
+
+        System.out.println(ug.name + " (Undergraduate) Fee: $" + ug.calculateFee());
+        System.out.println(grad.name + " (Graduate) Fee: $" + grad.calculateFee());
+    }
+}
